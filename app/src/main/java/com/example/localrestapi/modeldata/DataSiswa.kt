@@ -9,3 +9,8 @@ data class DataSiswa(
     val alamat : String,
     val telpon : String
 )
+
+data class uiStateSiswa(
+    val detailSiswa: DetailSiswa = DetailSiswa(),
+    val isEntryValid: Boolean = false
+)
