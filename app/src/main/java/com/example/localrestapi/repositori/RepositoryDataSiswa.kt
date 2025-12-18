@@ -17,7 +17,9 @@ class JaringanRepositoryDataSiswa(
     override suspend fun getDataSiswa() : List<DataSiswa> = serviceApiSiswa
         .getSiswa()
     override suspend fun postDataSiswa(dataSiswa: DataSiswa):retrofit2
-    .Response<Void> = serviceApiSiswa.postSiswa(dataSiswa)
-    //
+        .Response<Void> = serviceApiSiswa.postSiswa(dataSiswa)
+    //override suspend fun getSatuSiswa(Id: Int): DataSiswa = ServiceApiSiswa.getSatuSiswa(id
+    //override suspend fun editSatuSiswa(id: Int, dataSiswa: DataSiswa):retrofit2,response<Void>
+    //override suspend fun hapusSatuSiswa(id:Int):retrofit2.Response<Void>=
 
 }
