@@ -13,6 +13,7 @@ class JaringanRepositoryDataSiswa(
 ): RepositoryDataSiswa{
     override suspend fun getDataSiswa() : List<DataSiswa> = serviceApiSiswa
         .getSiswa()
-
+    override suspend fun postDataSiswa(dataSiswa: DataSiswa):retrofit2
+    .Response<Void> = serviceApiSiswa.postSiswa(dataSiswa)
 
 }
