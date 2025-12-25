@@ -41,6 +41,11 @@ class EditViewModel(savedStateHandle: SavedStateHandle, private val repositoryDa
     if (validasiInput(uiStateSiswa.detailSiswa)){
       val call: Response <Void> = repositoryDataSiswa.editSatuSiswa(idSiswa, uiStateSiswa
         .detailSiswa.toDataSiswa())
+
+      if (call.isSuccessful){
+        println("Update Sukses: ${call.message()}")
+
+      }
     }
   }
   }
