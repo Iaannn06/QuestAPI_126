@@ -15,6 +15,9 @@ import com.example.localrestapi.view.EntrySiswaScreen
 import com.example.localrestapi.view.HomeScreen
 import android.R.attr.type
 import androidx.navigation.NavType
+import com.example.localrestapi.view.DetailSiswaScreen
+import com.example.localrestapi.uicontroller.route.DestinasiEdit
+
 
 @Composable
 fun DataSiswaApp(
@@ -49,7 +52,8 @@ fun HostNavigasi(
             .itemIdArg) {
             type = NavType.IntType })
         ){
-
+            DetailSiswaScreen(navigateToEditItem = {navController.navigate("${DestinasiEdit.route}/$it")},
+                navigateBack = {navController.navigate(DestinasiHome.route) })
     }
     }
 }
