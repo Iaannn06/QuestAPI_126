@@ -21,7 +21,9 @@ class HomeViewModel(private val repositoryDataSiswa: RepositoryDataSiswa) : View
     var listSiswa: StatusUiSiswa by mutableStateOf(StatusUiSiswa.Loading)
         private set
 
-    init { loadSiswa() }
+    init {
+        loadSiswa()
+    }
 
     fun loadSiswa() {
         viewModelScope.launch {
