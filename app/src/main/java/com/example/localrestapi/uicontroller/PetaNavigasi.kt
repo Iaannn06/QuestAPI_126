@@ -17,6 +17,7 @@ import android.R.attr.type
 import androidx.navigation.NavType
 import com.example.localrestapi.view.DetailSiswaScreen
 import com.example.localrestapi.uicontroller.route.DestinasiEdit
+import com.example.localrestapi.view.EditSiswaScreen
 
 
 @Composable
