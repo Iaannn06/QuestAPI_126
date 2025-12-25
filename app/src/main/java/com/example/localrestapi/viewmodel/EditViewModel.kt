@@ -44,7 +44,8 @@ class EditViewModel(savedStateHandle: SavedStateHandle, private val repositoryDa
 
       if (call.isSuccessful){
         println("Update Sukses: ${call.message()}")
-
+      }else{
+        println("Update Error: ${call.message()}")
       }
     }
   }
