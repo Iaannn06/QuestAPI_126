@@ -8,6 +8,7 @@ import com.example.localrestapi.repositori.RepositoryDataSiswa
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.viewModelScope
+import com.example.localrestapi.modeldata.DetailSiswa
 import com.example.localrestapi.modeldata.toUiStateSiswa
 import com.example.localrestapi.uicontroller.route.DestinasiDetail
 import kotlinx.coroutines.launch
@@ -24,4 +25,14 @@ class EditViewModel(savedStateHandle: SavedStateHandle, private val repositoryDa
         .toUiStateSiswa()
     }
   }
+  fun updatedUiState(detailSiswa: DetailSiswa) {
+    uiStateSiswa =
+      UIStateSiswa(detailSiswa = detailSiswa, isEntryValid = validasiInput(detailSiswa))
+  }
+  private fun validasiInput(uiState: DetailSiswa = uiStateSiswa.detailSiswa ): Boolean {
+    return with(uiState){
+      nama.isNotBlank() && alamat.isNotBlank() && telpon.isNotBlank()
+    }
+  }
+
   }
