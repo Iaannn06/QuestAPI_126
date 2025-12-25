@@ -12,7 +12,6 @@ import com.example.localrestapi.uicontroller.route.DestinasiHome
 import com.example.localrestapi.view.EntrySiswaScreen
 import com.example.localrestapi.view.HomeScreen
 
-
 @Composable
 fun DataSiswaApp(
     navController: NavHostController = rememberNavController(),
@@ -34,10 +33,8 @@ fun HostNavigasi(
         composable(DestinasiHome.route) {
             HomeScreen(
                 navigateToItemEntry = { navController.navigate(DestinasiEntry.route) },
-                navigateToItemUpdate = { id ->
-                    // navController.navigate("${DestinasiDetail.route}/$id")
-                }
-            )
+                navigateToItemUpdate = {id ->
+                   navController.navigate("${DestinasiDetail.route}/${it}")})
         }
         composable(DestinasiEntry.route) {
             EntrySiswaScreen(
