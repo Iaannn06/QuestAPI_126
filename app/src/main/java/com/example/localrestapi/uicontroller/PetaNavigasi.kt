@@ -7,10 +7,14 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
+import com.example.localrestapi.uicontroller.route.DestinasiDetail
 import com.example.localrestapi.uicontroller.route.DestinasiEntry
 import com.example.localrestapi.uicontroller.route.DestinasiHome
 import com.example.localrestapi.view.EntrySiswaScreen
 import com.example.localrestapi.view.HomeScreen
+import android.R.attr.type
+import androidx.navigation.NavType
 
 @Composable
 fun DataSiswaApp(
@@ -40,5 +44,12 @@ fun HostNavigasi(
             EntrySiswaScreen(
                 navigateBack = { navController.navigate(DestinasiHome.route) })
         }
+
+        composable(DestinasiDetail.routeWithArgs, arguments = listOf(navArgument(DestinasiDetail
+            .itemIdArg) {
+            type = NavType.IntType })
+        ){
+
+    }
     }
 }
