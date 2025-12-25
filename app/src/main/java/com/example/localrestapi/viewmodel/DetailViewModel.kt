@@ -10,6 +10,8 @@ import com.example.localrestapi.modeldata.DataSiswa
 import com.example.localrestapi.repositori.RepositoryDataSiswa
 import com.example.localrestapi.uicontroller.route.DestinasiDetail
 import kotlinx.coroutines.launch
+import okio.IOException
+import retrofit2.HttpException
 
 sealed interface StatusUIDetail {
     data class Success(val satuSiswa: DataSiswa) : StatusUIDetail
@@ -31,7 +33,15 @@ RepositoryDataSiswa): ViewModel() {
     fun getSatuSiswa(){
         viewModelScope.launch {
             statusUIDetail = StatusUIDetail.Loading
-
+            statusUIDetail = try {
+                statusUIDetail.Success(satusiswa = repositoryDataSiswa.getSatuSiswa(idSiswa))
+            }
+            catch (e: IOException){
+                StatusUIDetail.Error
+            }
+            catch (e: HttpException){
+                StatusUIDetail.Error
+            }
         }
     }
 }
