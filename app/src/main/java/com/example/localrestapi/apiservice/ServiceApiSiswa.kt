@@ -2,6 +2,7 @@ package com.example.localrestapi.apiservice
 
 import com.example.localrestapi.modeldata.DataSiswa
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.PUT
@@ -20,6 +21,6 @@ interface ServiceApiSiswa {
     @PUT("editTM.php/{id}")
     suspend fun editSatuSiswa(@Query("id") id:Int,@Body, dataSiswa: DataSiswa):retrofit2.response<Void>
 
-    //@DELETE("deleteTM.php/{id")
-    //suspend fun hapusSatuSiswa(@Query("id") id:Int):retrofit2.Response<Void>
+    @DELETE("deleteTM.php/{id")
+    suspend fun hapusSatuSiswa(@Query("id") id:Int):retrofit2.Response<Void>
 }
