@@ -110,7 +110,7 @@ fun LoadingScreen(modifier: Modifier = Modifier) {
     )
 }
 
-// Tambahkan fungsi ErrorScreen ini karena di screenshot lo keterangannya Unresolved
+
 @Composable
 fun ErrorScreen(retryAction: () -> Unit, modifier: Modifier = Modifier) {
     Column(
