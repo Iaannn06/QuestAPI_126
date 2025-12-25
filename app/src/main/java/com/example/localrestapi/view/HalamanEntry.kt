@@ -51,7 +51,7 @@ fun EntrySiswaScreen(
                 navigateUp = navigateBack,
                 scrollBehavior = scrollBehavior
             )
-        } //
+        }
     ) { innerPadding ->
         EntrySiswaBody(
             uiStateSiswa = viewModel.uiStateSiswa,
