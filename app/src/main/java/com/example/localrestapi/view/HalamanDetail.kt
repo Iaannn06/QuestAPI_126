@@ -6,7 +6,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 
-@OptIn(ExperimentalMaterial3Api)
+
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 
 fun DetailSiswaScreen(
@@ -21,6 +22,11 @@ Scaffold(
             title = stringResource(DestinasiDetail.titleRes),
             canNavigateBack = true,
             navigateUp = navigateBack
+        )
+    },
+    floatingActionButton = {
+        val uiState = viewModel.statusUiDetail
+
         )
     }
 )
