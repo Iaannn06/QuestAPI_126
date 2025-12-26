@@ -1,20 +1,18 @@
 package com.example.localrestapi.viewmodel
 
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import com.example.localrestapi.modeldata.UIStateSiswa
-import com.example.localrestapi.repositori.RepositoryDataSiswa
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.setValue
 import androidx.lifecycle.viewModelScope
 import com.example.localrestapi.modeldata.DetailSiswa
+import com.example.localrestapi.modeldata.UIStateSiswa
 import com.example.localrestapi.modeldata.toDataSiswa
 import com.example.localrestapi.modeldata.toUiStateSiswa
-import com.example.localrestapi.uicontroller.route.DestinasiDetail
+import com.example.localrestapi.repositori.RepositoryDataSiswa
+import com.example.localrestapi.uicontroller.route.DestinasiEdit
 import kotlinx.coroutines.launch
-import retrofit2.Response
-
 
 class EditViewModel(
   savedStateHandle: SavedStateHandle,
@@ -24,12 +22,16 @@ class EditViewModel(
   var uiStateSiswa by mutableStateOf(UIStateSiswa())
     private set
 
-  private val idSiswa: Int = checkNotNull(savedStateHandle[DestinasiDetail.itemIdArg])
+  private val idSiswa: Int = checkNotNull(savedStateHandle[DestinasiEdit.itemIdArg])
 
   init {
     viewModelScope.launch {
-      uiStateSiswa = repositoryDataSiswa.getSatuSiswa(idSiswa)
-        .toUiStateSiswa(true)
+      try {
+        uiStateSiswa = repositoryDataSiswa.getSatuSiswa(idSiswa)
+          .toUiStateSiswa(true)
+      } catch (e: Exception) {
+        e.printStackTrace()
+      }
     }
   }
 
@@ -46,17 +48,23 @@ class EditViewModel(
     }
   }
 
+  // Pastikan bagian ini di dalam class EditViewModel
   suspend fun editSatuSiswa() {
     if (validasiInput(uiStateSiswa.detailSiswa)) {
-      val call: Response<Void> = repositoryDataSiswa.editSatuSiswa(
-        idSiswa,
-        uiStateSiswa.detailSiswa.toDataSiswa()
-      )
+      try {
+        // PERBAIKAN: Pastikan memanggil repository dengan ID dan Body yang benar
+        val call = repositoryDataSiswa.editSatuSiswa(
+          idSiswa,
+          uiStateSiswa.detailSiswa.toDataSiswa()
+        )
 
-      if (call.isSuccessful) {
-        println("Update Sukses : ${call.message()}")
-      } else {
-        println("Update Error : ${call.errorBody()}")
+        if (call.isSuccessful) {
+          println("Update Sukses: ${call.message()}")
+        } else {
+          println("Update Gagal: ${call.errorBody()?.string()}")
+        }
+      } catch (e: Exception) {
+        println("Error Edit: ${e.message}")
       }
     }
   }

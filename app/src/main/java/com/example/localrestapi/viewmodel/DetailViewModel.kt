@@ -48,12 +48,16 @@ RepositoryDataSiswa): ViewModel() {
     }
     @SuppressLint("SuspiciousIndentation")
     suspend fun hapusSatuSiswa() {
-        val resp: Response<Void> = repositoryDataSiswa.hapusSatuSiswa(idSiswa)
+        try {
+            val resp: retrofit2.Response<Void> = repositoryDataSiswa.hapusSatuSiswa(idSiswa)
 
-        if (resp.isSuccessful){
-           println("Sukses Hapus Data: ${resp.message()} " )
-        }else {
-            println("Gagal Hapus Data: ${resp.errorBody()}")
+            if (resp.isSuccessful) {
+                println("Sukses Hapus Data: ${resp.message()}")
+            } else {
+                println("Gagal Hapus Data: ${resp.errorBody()?.string()}")
+            }
+        } catch (e: Exception) {
+            println("Error Jaringan: ${e.message}")
         }
     }
 }

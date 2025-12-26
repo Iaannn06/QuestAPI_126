@@ -8,22 +8,21 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.localrestapi.uicontroller.route.DestinasiEdit
 import com.example.localrestapi.viewmodel.EditViewModel
 import com.example.localrestapi.viewmodel.provider.PenyediaViewModel
-import com.example.localrestapi.viewmodel.provider.PenyediaViewModel.Factory
-import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun EditSiswaScreen(
-navigateBack: () -> Unit,
-onNavigateUp: () -> Unit,
-modifier: Modifier = Modifier,
-viewModel: EditViewModel = viewModel(factory = PenyediaViewModel.Factory)
-){
+fun HalamanEdit(
+    navigateBack: () -> Unit,
+    onNavigateUp: () -> Unit,
+    modifier: Modifier = Modifier,
+    viewModel: EditViewModel = viewModel(factory = PenyediaViewModel.Factory)
+) {
+    val coroutineScope = rememberCoroutineScope()
+
     Scaffold(
         topBar = {
             SiswaTopAppBar(
@@ -34,7 +33,6 @@ viewModel: EditViewModel = viewModel(factory = PenyediaViewModel.Factory)
         },
         modifier = modifier
     ) { innerPadding ->
-        val coroutineScope = rememberCoroutineScope()
         EntrySiswaBody(
             uiStateSiswa = viewModel.uiStateSiswa,
             onSiswaValueChange = viewModel::updateUiState,

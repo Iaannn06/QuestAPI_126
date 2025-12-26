@@ -9,7 +9,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
 import com.example.localrestapi.uicontroller.DataSiswaApp
-import com.example.localrestapi.ui.theme.LocalRestAPITheme // Ganti ke nama theme lo
+import com.example.localrestapi.ui.theme.LocalRestAPITheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
